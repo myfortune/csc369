@@ -1,0 +1,7 @@
+Names:   Nanyang Jia     Sang Jun Ahn
+UTORids: jiananya        ahnsang
+svn#: 65
+
+Discussion
+
+Starvation could happen. Consider a scenario: 10 cars (length of a lane buffer) have been placed in the lane SOUTH, which signals the cross thread for this lane. The first car in this lane tries to cross from SOUTH to NORTH, which requires locks for quadrants 1 and 4. This car can only acquires the lock for quadrant 1, but the lock for quadrant 4 is taken by infinite numbers of cars crossing from WEST to EAST (which requires 3 and 4). Then starvation occurs since the arrive thread for lane SOUTH cannot be signaled.
